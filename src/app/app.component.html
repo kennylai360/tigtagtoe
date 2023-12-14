@@ -1,24 +1,26 @@
 <div class="site-container">
-  <h2>Tic-tac-toe</h2>
+  <h2>Tig-Tag-Tog</h2>
 </div>
-<div class="game-container">
-  <div class="grid-item"></div>
-  <div class="grid-item"></div>
-  <div class="grid-item"></div>
+<div class="game-container" *ngFor="let rowNumber of gameMapping; index as i">
+  <div
+    *ngFor="let blockNumber of gameMapping[i]; index as j"
+    class="grid-item"
+    (click)="squareClicked(blockNumber - 1)"
+  >
+    {{ returnTigTagValues(gameState[blockNumber - 1]) }}
+  </div>
 </div>
-<div class="game-container">
-  <div class="grid-item"></div>
-  <div class="grid-item"></div>
-  <div class="grid-item"></div>
-</div>
-<div class="game-container">
-  <div class="grid-item"></div>
-  <div class="grid-item"></div>
-  <div class="grid-item"></div>
-</div>
-<div class="info-row">
-  <div class="display-info"><app-chatbox></app-chatbox></div>
-  <div class="display-info"><app-gamelog></app-gamelog></div>
+
+<div class="game-settings">
+  <div class="players-turn">It is Player {{ currentPlayer }}'s turn!</div>
+  <button
+    *ngIf="!isGameStateClean()"
+    class="reset-btn"
+    type="reset"
+    (click)="clearGameState()"
+  >
+    Reset game
+  </button>
 </div>
 
 <app-footer></app-footer>
