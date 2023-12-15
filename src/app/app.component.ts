@@ -13,6 +13,7 @@ export class AppComponent implements AfterContentInit {
   public gameState: Array<number> = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   public playerWins: BehaviorSubject<number> = new BehaviorSubject(0);
+  public drawState: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   public gameMapping: Array<Array<number>> = [
     [1, 2, 3],
@@ -81,11 +82,18 @@ export class AppComponent implements AfterContentInit {
       const check = winState.map((value: number) => this.gameState[value]);
       const player1Check = check.every((item) => item === 1);
       const player2Check = check.every((item) => item === 2);
+      const drawState = this.gameState.every((item) => item !== 0);
+      if (drawState) {
+        this.drawState.next(true);
+        return;
+      }
       if (player1Check) {
         this.playerWins.next(1);
+        return;
       }
       if (player2Check) {
         this.playerWins.next(2);
+        return;
       }
     });
   }

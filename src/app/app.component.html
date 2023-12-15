@@ -12,9 +12,13 @@
 </div>
 
 <div class="game-settings">
-  <div class="game-information" *ngIf="!(playerWins | async)">
+  <div
+    class="game-information"
+    *ngIf="!(playerWins | async) && !(drawState | async)"
+  >
     It is Player {{ currentPlayer }}'s turn!
   </div>
+  <div *ngIf="drawState | async" class="game-information">DRAW GAME!</div>
   <div *ngIf="playerWins | async" class="game-information">
     PLAYER {{ playerWins | async }} WINS!!!
   </div>
@@ -24,7 +28,9 @@
     type="reset"
     (click)="clearGameState()"
   >
-    {{ (playerWins | async) ? "Play again!" : "Reset game" }}
+    {{
+      (playerWins | async) || (drawState | async) ? "Play again!" : "Reset game"
+    }}
   </button>
 </div>
 
