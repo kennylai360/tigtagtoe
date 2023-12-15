@@ -24,7 +24,7 @@
     type="reset"
     (click)="clearGameState()"
   >
-    Play again!
+    {{ (playerWins | async) ? "Play again!" : "Reset game" }}
   </button>
 </div>
 
