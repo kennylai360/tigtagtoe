@@ -18,7 +18,12 @@
   >
     It is Player {{ currentPlayer }}'s turn!
   </div>
-  <div *ngIf="drawState | async" class="game-information">DRAW GAME!</div>
+  <div
+    *ngIf="(drawState | async) && !(playerWins | async)"
+    class="game-information"
+  >
+    DRAW GAME!
+  </div>
   <div *ngIf="playerWins | async" class="game-information">
     PLAYER {{ playerWins | async }} WINS!!!
   </div>
