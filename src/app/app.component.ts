@@ -83,16 +83,16 @@ export class AppComponent implements AfterContentInit {
       const player1Check = check.every((item) => item === 1);
       const player2Check = check.every((item) => item === 2);
       const drawState = this.gameState.every((item) => item !== 0);
-      if (drawState) {
-        this.drawState.next(true);
-        return;
-      }
       if (player1Check) {
         this.playerWins.next(1);
         return;
       }
       if (player2Check) {
         this.playerWins.next(2);
+        return;
+      }
+      if (drawState) {
+        this.drawState.next(true);
         return;
       }
     });
