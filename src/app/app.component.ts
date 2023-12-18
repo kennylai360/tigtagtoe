@@ -58,6 +58,7 @@ export class AppComponent implements AfterContentInit {
     this.gameState = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     this.startingPlayer = Math.round(Math.random()) + 1;
     this.playerWins.next(0);
+    this.drawState.next(false);
   }
 
   public isGameStateClean(): boolean {
