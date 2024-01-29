@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppComponent should match snapshot 1`] = `
+<div
+  id="root1"
+>
+  <div
+    class="site-container"
+  >
+    <h2>
+      Tig-Tag-Tog
+    </h2>
+  </div>
+  
+  <div
+    class="game-settings"
+  >
+    
+    
+    
+    
+  </div>
+  <app-footer>
+    <footer>
+      Created by Kenny Lai (v1.0.2)
+    </footer>
+  </app-footer>
+</div>
+`;
