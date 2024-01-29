@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FooterComponent should match snapshot of the footer 1`] = `
+<div
+  id="root1"
+>
+  <footer>
+    Created by Kenny Lai (v1.0.2)
+  </footer>
+</div>
+`;
