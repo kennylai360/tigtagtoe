@@ -14,9 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should match snapshot', () => {
+  it(`should have the 'tic-tag-toe' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const fixtureNativeElement = fixture.nativeElement;
-    expect(fixtureNativeElement).toMatchSnapshot();
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual('tic-tag-toe');
+  });
+
+  it('should render title', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, tic-tag-toe');
   });
 });

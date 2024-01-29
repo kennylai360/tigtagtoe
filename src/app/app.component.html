@@ -17,7 +17,6 @@
     *ngIf="!(playerWins | async) && !(drawState | async)"
   >
     It is Player {{ currentPlayer }}'s turn!
-    {{ currentPlayer === 1 ? "(X)" : "(O)" }}
   </div>
   <div
     *ngIf="(drawState | async) && !(playerWins | async)"
