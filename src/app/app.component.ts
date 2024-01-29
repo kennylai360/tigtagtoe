@@ -1,7 +1,7 @@
 import { AfterContentInit, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './footer/footer.component';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -21,7 +21,7 @@ export class AppComponent implements AfterContentInit {
     [7, 8, 9],
   ];
 
-  public winConditions: Array<Array<number>> = [
+  public winStates: Array<Array<number>> = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -35,6 +35,10 @@ export class AppComponent implements AfterContentInit {
   public startingPlayer: number = Math.round(Math.random()) + 1;
 
   public currentPlayer: number = 0;
+
+  public playerOneWins: boolean = false;
+
+  public playerTwoWins: boolean = false;
 
   public ngAfterContentInit(): void {
     this.currentPlayer = this.startingPlayer;
@@ -75,14 +79,10 @@ export class AppComponent implements AfterContentInit {
   }
 
   private checkForWinState() {
-    // loop through the win conditions
-    this.winConditions.forEach((winState: Array<number>) => {
-      // returns the current gamestate of the selected boxes
+    this.winStates.forEach((winState: Array<number>) => {
       const check = winState.map((value: number) => this.gameState[value]);
-      // check if any of the win conditions has all ones or twos (player one / two)
       const player1Check = check.every((item) => item === 1);
       const player2Check = check.every((item) => item === 2);
-      // if all the values are either ones or zeros it means the game has come to a draw.
       const drawState = this.gameState.every((item) => item !== 0);
       if (player1Check) {
         this.playerWins.next(1);
